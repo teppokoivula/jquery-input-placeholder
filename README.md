@@ -5,9 +5,7 @@ This plugin lets you specify a placeholder text for input fields. Placeholder te
 
 Please note that by default HTML5 placeholder feature is used if it's supported by users browser. This feature can be disabled by setting "useHTML5PlaceholderByDefault" to false.
 
-Input Placeholder Plugin can also mimic the HTML5 placeholder
-feature, though this part is partly experimental and disabled by
-default.
+Input Placeholder Plugin can also mimic the HTML5 placeholder feature, though this part is partly experimental and disabled by default.
 
 ## How to use?
 
@@ -78,40 +76,50 @@ Sometimes you may want to customize how Input Placeholder Plugin works a bit mor
 
 All of these options are optional (no pun intended), although you do need to set either placeholder option or HTML5 placeholder attribute in order for this script to actually do something.
 
-*   placeholder
+*   **placeholder**
     
     *   Text (string) to be used as placeholder.
     *   default: null
 
-*   activeCSS
+*   **activeCSS**
     
     *   Styles for active inputfield (focus) in JSON format (default jQuery .css() behaviour.)
     *   default: { fontStyle: 'normal', color: '#000' }
 
-*   inactiveCSS
+*   **inactiveCSS**
     
     *   Styles for inactive inputfield (blur) in JSON format (default jQuery .css() behaviour.)
     *   default: { fontStyle: 'italic', color: '#727272' }
 
-*   mimicHTML5Placeholder
+*   **mimicHTML5Placeholder**
     
     *   If set to true, Input Placeholder Plugin will attempt to mimic default HTML5 placeholder feature.
     *   default: false
 
-*   useHTML5PlaceholderByDefault
+*   **useHTML5PlaceholderByDefault**
     
     *   If set to true, HTML5 placeholder feature will be used instead of custom script if it's supported.
     *   default: true
 
-*   clearPlaceholderOnFormSubmit
+*   **clearPlaceholderOnFormSubmit**
     
     *   If set to true, placeholder value will be cleared when parent form of the input is submitted. Only applies to situations where HTML5 placeholder is a) not supported or b) disabled by setting useHTML5PlaceholderByDefault to false.
     *   default: true
 
 ## License
 
-This program is free software. It comes without any warranty, to
-the extent permitted by applicable law. You can redistribute it
-and/or modify it under the terms of the Do What The Fuck You Want
-To Public License, Version 2, as published by Sam Hocevar. See
-http://sam.zoy.org/wtfpl/COPYING for more details.
+This program is free software. It comes without any warranty, to the extent permitted by applicable law. You can redistribute it and/or modify it under the terms of the Do What The Fuck You Want To Public License, Version 2, as published by Sam Hocevar:
+
+                DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                        Version 2, December 2004
+    
+     Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+    
+     Everyone is permitted to copy and distribute verbatim or modified
+     copies of this license document, and changing it is allowed as long
+     as the name is changed.
+    
+                DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+       TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+    
+      0. You just DO WHAT THE FUCK YOU WANT TO.
