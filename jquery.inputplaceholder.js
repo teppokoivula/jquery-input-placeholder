@@ -56,19 +56,20 @@
 
 		 // Actual plugin code (return is required to maintain jQuery chaining)
 		 return this.each(function() {
+			 var $input = $(this);
 			 if (settings.useHTML5PlaceholderByDefault
 			     && HTML5PlaceholderSupport()
-			     && $(this).attr('placeholder')) {
+			     && $input.attr('placeholder')) {
 				 // HTML5 placeholder is supported and placeholder attribute
 				 // found, do nothing
 			 } else if (settings.useHTML5PlaceholderByDefault
 			            && HTML5PlaceholderSupport()
-			            && !$(this).attr('placeholder')
+			            && !$input.attr('placeholder')
 			            && settings.placeholder) {
 				 // HTML5 placeholder is supported and placeholder is given but
 				 // placeholder attribute isn't set; we'll just set it now
-				 $(this).attr('placeholder', settings.placeholder);
-			 } else if (settings.placeholder || $(this).attr('placeholder')) {
+				 $input.attr('placeholder', settings.placeholder);
+			 } else if (settings.placeholder || $input.attr('placeholder')) {
 				 // HTML5 placeholder is not supported (or user has decided not
 				 // to use it) and either placeholder attribute or placeholder
 				 // setting is found; use custom placeholder functionality
@@ -76,23 +77,23 @@
 					 // Clear placeholder attribute to avoid any confusion in
 					 // case that our HTML5 placeholder support check for some
 					 // strange reason didn't work properly..
-					 settings.placeholder = $(this).attr('placeholder');
-					 $(this).removeAttr('placeholder');
+					 settings.placeholder = $input.attr('placeholder');
+					 $input.removeAttr('placeholder');
 				 }
 				 if (settings.mimicHTML5Placeholder) {
 					 // Attach to keyup / keydown events to mimic HTML5 placeholder
 					 // functionality
-					 $(this)
+					 $input
 						 .keyup(function() {
-							 if ($(this).val() == '') {
-								 $(this)
+							 if ($input.val() == '') {
+								 $input
 									 .val(settings.placeholder)
 									 .css(settings.inactiveCSS);
 							 }
 						 })
 						 .keydown(function() {
-							 if ($(this).val() == settings.placeholder) {
-								 $(this)
+							 if ($input.val() == settings.placeholder) {
+								 $input
 									 .val('')
 									 .css(settings.activeCSS);
 							 }
@@ -101,24 +102,26 @@
 				 } else {
 					 // Attach to focus / blur events to create our own custom
 					 // placeholder functionality
-					 $(this)
+					 $input
 						 .focus(function() {
-							 $(this).css(settings.activeCSS);
-							 if ($(this).val() == settings.placeholder) $(this).val('');
+							 $input.css(settings.activeCSS);
+							 if ($input.val() == settings.placeholder) $input.val('');
 						 })
 						 .blur(function() {
-							 if (!$(this).val()) $(this).val(settings.placeholder);
-							 if ($(this).val() == settings.placeholder) $(this).css(settings.inactiveCSS);
+							 if (!$input.val()) $input.val(settings.placeholder);
+							 if ($input.val() == settings.placeholder) $input.css(settings.inactiveCSS);
 						 })
 						 .blur();
 				 }
-				 if (settings.clearPlaceholderOnFormSubmit && $(this).parents('form:first')) {
+				 if ((!settings.useHTML5PlaceholderByDefault || !HTML5PlaceholderSupport())
+					 && settings.clearPlaceholderOnFormSubmit
+					 && $input.parents('form:first')) {
 					 // Prevent placeholder value from being sent with form
 					 // containing this input (parent form). Note: we're using
 					 // parents('form:first') instead of closest('form') here
 					 // because closest() has only been around since jQuery 1.3.
-					 $(this).parent('form').submit(function() {
-						 if ($(this).val() == settings.placeholder) $(this).val('');
+					 $input.parent('form').submit(function() {
+						 if ($input.val() == settings.placeholder) $input.val('');
 					 });
 				 }
 			 }
