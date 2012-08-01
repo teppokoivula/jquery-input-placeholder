@@ -9,7 +9,17 @@ Input Placeholder Plugin can also mimic the HTML5 placeholder feature, though th
 
 ## How to use?
 
-You just need to place jquery.inputplaceholder.js in a place where you can link to (<script type="text/javascript" src="/path/to/jquery.inputplaceholder.js"></script>) and call it for any inputfields you want.
+You just need to place jquery.inputplaceholder.js in a place where you can link to ..
+
+    <script type="text/javascript" src="/path/to/jquery.inputplaceholder.js"></script>
+    
+.. and call it for any inputfields you want:
+
+    <script type="text/javascript">
+    $(function() {
+        $('input#field-id').inputPlaceholder({ placeholder: 'My placeholder!' });
+    });
+    </script>
 
 ### Basic example
 
