@@ -132,7 +132,7 @@
 					 // containing this input (parent form). Note: we're using
 					 // parents('form:first') instead of closest('form') here
 					 // because closest() has only been around since jQuery 1.3.
-					 $input.parent('form').submit(function() {
+					 $input.parents('form:first').submit(function() {
 						 if ($input.val() == settings.placeholder) $input.val('');
 					 });
 				 }
