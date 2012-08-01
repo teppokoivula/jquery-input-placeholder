@@ -49,19 +49,30 @@
 			 return ('placeholder' in input);
 		 }
 
-		 // Function for adding custom CSS style to HTML5 placeholder
-		 function stylizeHTML5Placeholder(style) {
-			 // TODO!
+		 // Function for adding custom CSS styles to HTML5 placeholder
+		 function stylizeHTML5Placeholder($input) {
+			 var $style = $('<style class="jquery-input-placeholder-'+$.fn.inputPlaceholder.num+'-style"></style>');
+			 $style
+				 .css(settings.inactiveCSS)
+				 .insertBefore($input)
+				 .text(
+					 '.jquery-input-placeholder-'+$.fn.inputPlaceholder.num+'::-webkit-input-placeholder{'+$style.attr('style')+'}'+
+					 '.jquery-input-placeholder-'+$.fn.inputPlaceholder.num+':-moz-placeholder{'+$style.attr('style')+'}'
+				 )
+				 .removeAttr('style');
 		 }
 
 		 // Actual plugin code (return is required to maintain jQuery chaining)
 		 return this.each(function() {
 			 var $input = $(this);
+			 $.fn.inputPlaceholder.num++;
+			 $input.addClass('jquery-input-placeholder-'+$.fn.inputPlaceholder.num);
 			 if (settings.useHTML5PlaceholderByDefault
 			     && HTML5PlaceholderSupport()
 			     && $input.attr('placeholder')) {
 				 // HTML5 placeholder is supported and placeholder attribute
-				 // found, do nothing
+				 // found, stylize the default placeholder.
+				 stylizeHTML5Placeholder($input);
 			 } else if (settings.useHTML5PlaceholderByDefault
 			            && HTML5PlaceholderSupport()
 			            && !$input.attr('placeholder')
@@ -69,6 +80,7 @@
 				 // HTML5 placeholder is supported and placeholder is given but
 				 // placeholder attribute isn't set; we'll just set it now
 				 $input.attr('placeholder', settings.placeholder);
+				 stylizeHTML5Placeholder($input);
 			 } else if (settings.placeholder || $input.attr('placeholder')) {
 				 // HTML5 placeholder is not supported (or user has decided not
 				 // to use it) and either placeholder attribute or placeholder
@@ -128,5 +140,8 @@
 		 });
 
 	 };
+
+	 // Variables used by all Input Placeholder Plugin instances
+	 $.fn.inputPlaceholder.num = 0;
 
 })(jQuery);
